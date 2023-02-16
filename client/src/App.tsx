@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { AuthAction } from "./components/AuthAction";
 import { useUserInfo } from "./hooks/useUserInfo";
 
-type Message = {
+export type Message = {
   content: string;
 };
 
 function App() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>();
 
-  const [privateMessage, setPrivateMessage] = useState("");
+  const [privateMessage, setPrivateMessage] = useState<string>();
 
   const { userInfo, isAuthenticated } = useUserInfo();
 
@@ -47,24 +48,9 @@ function App() {
   return (
     <div>
       <h1>Public Page</h1>
+      <AuthAction isAuthenticated={isAuthenticated} />
 
-      {isAuthenticated ? (
-        <a
-          href={`${
-            import.meta.env.VITE_BASE_API_URL
-          }/logout`}
-        >
-          Logout
-        </a>
-      ) : (
-        <a
-          href={`${
-            import.meta.env.VITE_BASE_API_URL
-          }/oauth2/authorization/auth0`}
-        >
-          Login
-        </a>
-      )}
+      <br />
 
       <p>Message: {message}</p>
       {privateMessage && <p>Private Message: {privateMessage}</p>}

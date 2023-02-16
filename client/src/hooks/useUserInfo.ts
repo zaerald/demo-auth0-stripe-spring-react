@@ -34,5 +34,5 @@ export const useUserInfo = () => {
     })();
   }, []);
 
-  return { userInfo, loading, isAuthenticated: userInfo?.username && !loading };
+  return { userInfo, loading, isAuthenticated: !!userInfo?.username && !loading };
 };
