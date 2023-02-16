@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { AuthAction } from "./components/AuthAction";
+import { UserProfile } from "./components/UserProfile";
 import { useUserInfo } from "./hooks/useUserInfo";
 
 export type Message = {
@@ -80,7 +81,7 @@ function App() {
       <p>Message: {message}</p>
       {privateMessage && <p>Private Message: {privateMessage}</p>}
 
-      {isAuthenticated ? <p>Email: {userInfo?.email}</p> : <h3>GUEST</h3>}
+      <UserProfile userInfo={userInfo} isAuthenticated={isAuthenticated} />
 
       {isAuthenticated && (
         <>

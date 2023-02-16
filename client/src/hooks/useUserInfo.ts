@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type UserInfo = {
+export type UserInfo = {
   username: string;
   email: string;
   pictureUrl: string;
@@ -34,5 +34,9 @@ export const useUserInfo = () => {
     })();
   }, []);
 
-  return { userInfo, loading, isAuthenticated: !!userInfo?.username && !loading };
+  return {
+    userInfo,
+    loading,
+    isAuthenticated: !!userInfo?.username && !loading,
+  };
 };

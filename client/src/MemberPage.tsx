@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Message } from "./App";
 import { AuthAction } from "./components/AuthAction";
+import { UserProfile } from "./components/UserProfile";
 import { useUserInfo } from "./hooks/useUserInfo";
 
 export const MemberPage = () => {
@@ -35,23 +36,7 @@ export const MemberPage = () => {
       <AuthAction isAuthenticated={isAuthenticated} />
 
       <br />
-
-      {isAuthenticated ? (
-        <>
-          {userInfo?.pictureUrl && (
-            <img
-              src={userInfo?.pictureUrl}
-              alt="User picutre"
-              width="100"
-              height="100"
-            />
-          )}
-          <p>Username: {userInfo?.username}</p>
-          <p>Email: {userInfo?.email}</p>
-        </>
-      ) : (
-        <h3>GUEST</h3>
-      )}
+      <UserProfile userInfo={userInfo} isAuthenticated={isAuthenticated} />
 
       <button onClick={onRequestHandler}>Make RESTful request.</button>
       {privateMessage && (
