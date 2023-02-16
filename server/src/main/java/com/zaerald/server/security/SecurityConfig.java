@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl(clientBaseUrl)
+                .and().csrf().disable()
         ;
 
         return http.build();
