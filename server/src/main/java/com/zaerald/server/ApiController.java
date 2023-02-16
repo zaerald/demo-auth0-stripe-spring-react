@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 // for demonstration purposes, allow origin for everything
 @CrossOrigin(origins = "*")
-public class HelloController {
+public class ApiController {
 
-   @GetMapping("/hello")
-    public Message hello() {
-        return Message.of("hello");
+    @GetMapping("/public")
+    public Message publicEndpoint() {
+        return Message.of("Public endpoint.");
+    }
+
+    @GetMapping("/private")
+    public Message privateEndpoit() {
+        return Message.of("Private endpoint.");
     }
 
 }
