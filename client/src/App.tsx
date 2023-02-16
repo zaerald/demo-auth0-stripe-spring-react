@@ -7,6 +7,12 @@ export type Message = {
   content: string;
 };
 
+export type SubscriptionSession = {
+  id: string;
+  paymentStatus: string;
+  url: string;
+};
+
 function App() {
   const [message, setMessage] = useState<string>();
 
@@ -46,16 +52,22 @@ function App() {
   }, []);
 
   const onSubscribeHandler = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_BASE_API_URL}/api/subscription/subscribe`,
-      {
-        method: "POST",
-        credentials: "include",
-      }
-    );
-    const data = await response.json();
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_API_URL}/api/subscription/subscribe`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
 
-    console.log({data})
+      if ("url" in data && typeof data.url === "string") {
+        window.location.href = data.url;
+      }
+    } catch {
+      alert("There was an error in creating a payment sesssion!");
+    }
   };
 
   return (
