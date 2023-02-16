@@ -48,7 +48,15 @@ function App() {
     <div>
       <h1>Public Page</h1>
 
-      {!isAuthenticated && (
+      {isAuthenticated ? (
+        <a
+          href={`${
+            import.meta.env.VITE_BASE_API_URL
+          }/logout`}
+        >
+          Logout
+        </a>
+      ) : (
         <a
           href={`${
             import.meta.env.VITE_BASE_API_URL
@@ -59,9 +67,9 @@ function App() {
       )}
 
       <p>Message: {message}</p>
-      <p>Private Message: {privateMessage ?? "None"}</p>
+      {privateMessage && <p>Private Message: {privateMessage}</p>}
 
-      {isAuthenticated ? <p>Email: {userInfo?.email}</p> : <p>Guest</p>}
+      {isAuthenticated ? <p>Email: {userInfo?.email}</p> : <h3>GUEST</h3>}
 
       <a href="/member">Go to member page</a>
     </div>

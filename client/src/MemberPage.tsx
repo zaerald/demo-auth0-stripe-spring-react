@@ -18,7 +18,7 @@ export const MemberPage = () => {
           <p>Email: {userInfo?.email}</p>
         </>
       ) : (
-        <p>Guest</p>
+        <h3>GUEST</h3>
       )}
 
       <a href="/">Go to public page</a>

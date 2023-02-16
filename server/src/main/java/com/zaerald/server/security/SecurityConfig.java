@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class SecurityConfig {
@@ -20,7 +21,11 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
                 .and().oauth2Login()
                 .defaultSuccessUrl(clientBaseUrl + "/member", true)
-                .and().cors();
+                .and().cors()
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl(clientBaseUrl)
+        ;
 
         return http.build();
     }
