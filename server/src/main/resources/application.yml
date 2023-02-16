@@ -3,7 +3,6 @@ server:
 
 logging:
   level:
-    root: ERROR
     org.springframework.web: ERROR
     com.auth0.example: TRACE
 
@@ -22,3 +21,7 @@ spring:
         provider:
           auth0:
             issuer-uri: ${AUTH0_ISSUER_URI}
+
+client:
+  base-url: ${CLIENT_BASE_URL}
+
