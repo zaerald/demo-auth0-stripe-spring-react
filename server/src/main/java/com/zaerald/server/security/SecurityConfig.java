@@ -16,11 +16,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/").permitAll()
-                .mvcMatchers("/api/public").permitAll()
+                .mvcMatchers("/api/message/public").permitAll()
                 .anyRequest().authenticated()
                 .and().oauth2Login()
-                .defaultSuccessUrl(clientBaseUrl, true)
+                .defaultSuccessUrl(clientBaseUrl + "/member", true)
                 .and().cors();
+
         return http.build();
     }
 

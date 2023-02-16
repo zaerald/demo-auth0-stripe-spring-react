@@ -1,7 +1,7 @@
 export const MemberPage = () => {
   return (
     <div>
-      Member Page
+      <h1>Member Only Page</h1>
     </div>
-  )
-}
+  );
+};
