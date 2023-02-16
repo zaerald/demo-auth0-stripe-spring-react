@@ -45,6 +45,19 @@ function App() {
     })();
   }, []);
 
+  const onSubscribeHandler = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_BASE_API_URL}/api/subscription/subscribe`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
+    const data = await response.json();
+
+    console.log({data})
+  };
+
   return (
     <div>
       <h1>Public Page</h1>
@@ -56,6 +69,14 @@ function App() {
       {privateMessage && <p>Private Message: {privateMessage}</p>}
 
       {isAuthenticated ? <p>Email: {userInfo?.email}</p> : <h3>GUEST</h3>}
+
+      {isAuthenticated && (
+        <>
+          <button onClick={onSubscribeHandler}>Subscribe</button>
+          <br />
+          <br />
+        </>
+      )}
 
       <a href="/member">Go to member page</a>
     </div>

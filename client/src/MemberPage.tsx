@@ -24,7 +24,7 @@ export const MemberPage = () => {
           setPrivateMessage(messageData.content);
         }
       } catch (e) {
-        alert('Unauthorized error!');
+        alert("Unauthorized error!");
       }
     })();
   };
@@ -38,12 +38,14 @@ export const MemberPage = () => {
 
       {isAuthenticated ? (
         <>
-          <img
-            src={userInfo?.pictureUrl}
-            alt="User picutre"
-            width="100"
-            height="100"
-          />
+          {userInfo?.pictureUrl && (
+            <img
+              src={userInfo?.pictureUrl}
+              alt="User picutre"
+              width="100"
+              height="100"
+            />
+          )}
           <p>Username: {userInfo?.username}</p>
           <p>Email: {userInfo?.email}</p>
         </>
@@ -52,9 +54,12 @@ export const MemberPage = () => {
       )}
 
       <button onClick={onRequestHandler}>Make RESTful request.</button>
-      {privateMessage && <p style={{color: 'green'}}>Private Message: {privateMessage}</p>}
+      {privateMessage && (
+        <p style={{ color: "green" }}>Private Message: {privateMessage}</p>
+      )}
 
-      <br /><br />
+      <br />
+      <br />
 
       <a href="/">Go to public page</a>
     </div>
