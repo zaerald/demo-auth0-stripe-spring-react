@@ -1,12 +1,16 @@
 package com.zaerald.server.subscription;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor(staticName = "of")
+@Builder
 public class Subscription {
 
-    private final String status;
+    private final String id;
+
+    private final String paymentStatus;
+
+    private final String url;
 
 }
